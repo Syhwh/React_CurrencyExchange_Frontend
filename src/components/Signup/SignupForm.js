@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Message, Segment, Checkbox } from 'semantic-ui-react'
 
 
-export default function SignupForm({ props }) {
+export default function SignupForm({ props, responseError }) {
   const {
     values,
     handleBlur,
@@ -13,11 +13,12 @@ export default function SignupForm({ props }) {
     errors,
     handleChange,
     handleSubmit,
+
   } = props
   return (<>
     <Grid
       textAlign='center'
-      style={{ height: '100vh' }}
+      style={{ height: '60vh' }}
       verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='blue' textAlign='center'>
@@ -25,6 +26,10 @@ export default function SignupForm({ props }) {
       </Header>
         <Form size='large'>
           <Segment stacked>
+            {responseError &&
+              <Message size='mini' negative>
+                <p>{responseError}</p>
+              </Message>}
             <Form.Input
               fluid
               icon='user'
@@ -70,14 +75,12 @@ export default function SignupForm({ props }) {
                 <p>{errors.userPasswordConfirm}</p>
               </Message>}
             <Form.Field>
-              <Checkbox               
+              <Checkbox
                 name='termsAndConditions'
-                onChange={handleChange}
-                onBlur={handleBlur}
                 label='I agree to the Terms and Conditions'
-               
+                checked={values.termsAndConditions}
               />
-              {errors.termsAndConditions &&
+              {touched.termsAndConditions && errors.termsAndConditions &&
                 <Message size='mini' negative>
                   <p>{errors.termsAndConditions}</p>
                 </Message>}
@@ -116,7 +119,8 @@ SignupForm.propTypes = {
   isSubmitting: propTypes.bool,
   userEmail: propTypes.string,
   userPassword: propTypes.string,
-  userPasswordConfirm: propTypes.string
+  userPasswordConfirm: propTypes.string,
+  responseError: propTypes.string
 }
 
 
@@ -131,5 +135,6 @@ SignupForm.defaultProps = {
   isSubmitting: undefined,
   userEmail: '',
   userPassword: '',
-  userPasswordConfirm: undefined
+  userPasswordConfirm: undefined,
+  responseError: undefined
 }

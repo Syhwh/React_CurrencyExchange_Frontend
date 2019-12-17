@@ -4,9 +4,9 @@ import {
   GET_USER_CONVERSIONS_INFO,
   UPDATE_CURRENCY_RATES,
   ERROR
-} from '../actions/types.action'
+} from '../actions/types.actions'
 
-const initialState = {
+export const initialState = {
   currencyConversionRates: '',
   currencyExchange: '',
   currencyExchangeRate: '',

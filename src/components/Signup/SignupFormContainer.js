@@ -12,7 +12,7 @@ const initialValues = {
   userEmail: '',
   userPassword: '',
   userPasswordConfirm: '',
-  termsAndConditions: false
+  termsAndConditions: true
 }
 
 const loginSchema = Yup.object().shape({
@@ -33,29 +33,36 @@ const loginSchema = Yup.object().shape({
       .oneOf([true], 'You have to agree with our Terms and Conditions!')
 });
 
-function SignUpFormContainer({ signupUserAction, requestError }) {
+function SignUpFormContainer({ signupUserAction, responseError }) {
+
   const history = useHistory();
+
+  const redirectToHome = () => {   
+    history.push('/')
+  }
   const onSubmit = (values, { resetForm, setSubmitting }) => {
-    signupUserAction(values);
+
+    signupUserAction(values, redirectToHome);
     resetForm();
     setSubmitting(false);
-    history.push('/');
+
   }
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={loginSchema}
       onSubmit={onSubmit}
-      requestError={requestError}
     >
-      {(props) => <SignupForm props={props} />}
+      {(props) => <SignupForm props={props} responseError={responseError} />}
     </Formik>
   )
 }
 
 const mapStateToProps = ({ user }) => {
+
   return {
-    requestError: user.error
+    responseError: user.userError
   }
 }
 const mapDispatchToProps = {
@@ -67,8 +74,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(SignUpFormContainer)
 
 SignUpFormContainer.propTypes = {
   signupUserAction: propTypes.func.isRequired,
-  requestError: propTypes.string
+  responseError: propTypes.string
 }
 SignUpFormContainer.defaultProps = {
-  requestError: undefined
+  responseError: undefined
 }

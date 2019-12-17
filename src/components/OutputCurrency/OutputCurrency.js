@@ -12,6 +12,7 @@ export default function OutputCurrency({ currency }) {
       readOnly >
       <Label basic>EUR</Label>
       <NumberFormat
+      readOnly
         thousandSeparator
         decimalScale={4}
         prefix='$'

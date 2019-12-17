@@ -7,16 +7,21 @@ import { Input, Label } from 'semantic-ui-react';
 function InputCurrency({ currency, handleOnchange }) {
   return (<>
     <Input
+      test-data='Input-Currency-Component'
       fluid
-      labelPosition='right' type='text' placeholder='Amount'  >
+      labelPosition='right'
+      type='text'
+      placeholder='Amount'  >
       <Label basic>USD</Label>
       <NumberFormat
+        test-data='Input-Number-Format'
         onChange={(e) => handleOnchange(e.target.value)}
         thousandSeparator
         decimalScale={4}
         prefix='$'
         className="some"
         inputMode="numeric"
+        name='inputCurrency'
         value={currency} />
     </Input>
   </>

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { AuthContext } from '../../helpers/authentication.context';
 import { loginUser } from '../../redux/actions/user.actions';
 import LoginForm from './LoginForm';
 
@@ -25,12 +26,18 @@ const loginSchema = Yup.object().shape({
 });
 
 function LoginFormContainer({ loginUserAction, responseError }) {
+  const { authLoginUser } = useContext(AuthContext);
   const history = useHistory();
+
+  const redirectToHome = (id) => {
+    authLoginUser(id);
+    history.push('/')
+  }
+
   const onSubmit = (values, { resetForm, setSubmitting }) => {
-    loginUserAction(values);
+    loginUserAction(values, redirectToHome);
     resetForm();
     setSubmitting(false);
-    history.push('/')
   }
   return (
     <Formik
@@ -38,14 +45,19 @@ function LoginFormContainer({ loginUserAction, responseError }) {
       validationSchema={loginSchema}
       onSubmit={onSubmit}
     >
-      {(props) => <LoginForm props={props} responseError={responseError} />}
+      {(props) =>
+        <LoginForm
+          props={props}
+          responseError={responseError}
+        />
+      }
     </Formik>
   )
 }
 
 const mapStateToProps = ({ user }) => {
   return {
-    responseError: user.error
+    responseError: user.userError
   }
 }
 const mapDispatchToProps = {

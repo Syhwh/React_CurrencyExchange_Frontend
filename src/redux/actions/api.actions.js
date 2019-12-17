@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import currencyExchangeApi from '../../utils/api.configuration';
-import { POST_CONVERT, GET_CURRENCY_RATES, UPDATE_CURRENCY_RATES, ERROR } from './types.action';
+import { POST_CONVERT, GET_CURRENCY_RATES, UPDATE_CURRENCY_RATES, ERROR } from './types.actions';
 
 export function getCurrencyExchangeRate() {
   return function dispatcher(dispatch) {

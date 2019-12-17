@@ -1,8 +1,8 @@
-import { USER_REGISTER, USER_LOGIN, USER_LOGOUT, ERROR } from '../actions/types.action';
+import { USER_REGISTER, USER_LOGIN, USER_LOGOUT, ERROR } from '../actions/types.actions';
 
-const initialState = {
+export const initialState = {
   user: '',
-  error: ''
+  userError: ''
 }
 
 export default function userReducer(state = initialState, action) {
@@ -11,25 +11,24 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         user: action.payload,
-        error: ''
+        userError: ''
       }
     case USER_LOGIN:
       return {
         ...state,
         user: action.payload,
-        error: ''
+        userError: ''
       }
     case USER_LOGOUT:
       return {
-        ...state,
         user: '',
-        error: ''
+        userError: ''
       }
 
     case ERROR:
       return {
         ...state,
-        error: action.payload
+        userError: action.payload
       }
     default:
       return state

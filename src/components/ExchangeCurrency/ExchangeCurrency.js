@@ -1,32 +1,28 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import {
-  Button,
-  Container,
-  Grid,
-  Segment,
-
-} from 'semantic-ui-react';
+import { Button, Container, Grid, Segment } from 'semantic-ui-react';
 import InputCurrency from '../InputCurrency/InputCurrency';
 import OutputCurrency from '../OutputCurrency/OutputCurrency';
+import ModalMessage from '../Modal/ModalMessage';
 
 export default function ExchangeCurrency({
   handleOnchange,
   currency,
   currencyExchanged,
   handleOnClick,
-  currentRate }) {
+  currentRate,
+  user }) {
   return (<>
     <Container
-      style={{
-        marginTop: '3rem'
-      }}
+      test-data='Exchange-Currency-Component'
+      style={{ marginTop: '3rem' }}
     >
       <Grid columns='equal' >
         <Grid.Row>
           <Grid.Column>
             <Segment secondary>
               <InputCurrency
+                test-data='Input-Currency-Component'
                 handleOnchange={handleOnchange}
                 currency={currency} />
             </Segment>
@@ -34,19 +30,24 @@ export default function ExchangeCurrency({
           <Grid.Column>
             <Segment secondary>
               <OutputCurrency
+                test-data='Output-Currency-Component'
                 currency={currencyExchanged} />
             </Segment>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Button
-              onClick={handleOnClick}
-              size='large'
-              animated='fade'>
-              <Button.Content visible>Make a conversion</Button.Content>
-              <Button.Content hidden>Rate:{currentRate} </Button.Content>
-            </Button>
+        <Grid.Row centered columns={6}>
+          <Grid.Column centered width={3} >
+            {user ?
+              <Button
+                centered
+                test-data='Button-Conversion-Currency-Component'
+                onClick={handleOnClick}
+                size='large'
+                animated='fade'>
+                <Button.Content visible>Make a conversion</Button.Content>
+                <Button.Content hidden>Rate:{currentRate} </Button.Content>
+              </Button> :
+              <ModalMessage centered />}
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -58,10 +59,12 @@ ExchangeCurrency.propTypes = {
   handleOnClick: propTypes.func.isRequired,
   currency: propTypes.string,
   currencyExchanged: propTypes.number,
-  currentRate: propTypes.number
+  currentRate: propTypes.number,
+  user: propTypes.string
 }
 ExchangeCurrency.defaultProps = {
   currency: undefined,
-  currencyExchanged: undefined,
+  currencyExchanged: 0,
   currentRate: undefined,
+  user: undefined
 }

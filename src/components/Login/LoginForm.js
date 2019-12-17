@@ -3,8 +3,8 @@ import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 
+export default function LoginForm({ props, responseError }) {
 
-export default function LoginForm({ props, requestError }) {
   const {
     handleBlur,
     touched,
@@ -16,16 +16,16 @@ export default function LoginForm({ props, requestError }) {
   } = props
 
   return (<>
-    <Grid textAlign='center' style={{ height: '70vh' }} verticalAlign='middle'>
+    <Grid textAlign='center' style={{ height: '50vh' }} verticalAlign='middle' data-test='Login-Form-Component'>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='blue' textAlign='center'>
           Log-in to your account
       </Header>
         <Form size='large'>
           <Segment stacked>
-            {requestError &&
+            {responseError &&
               <Message size='mini' negative>
-                <p>{requestError}</p>
+                <p>{responseError}</p>
               </Message>}
             <Form.Input
               fluid icon='user'
@@ -88,7 +88,7 @@ LoginForm.propTypes = {
   isSubmitting: propTypes.bool,
   userEmail: propTypes.string,
   userPassword: propTypes.string,
-  requestError: propTypes.string
+  responseError: propTypes.string
 }
 LoginForm.defaultProps = {
   props: undefined,
@@ -101,5 +101,5 @@ LoginForm.defaultProps = {
   isSubmitting: undefined,
   userEmail: '',
   userPassword: '',
-  requestError: undefined
+  responseError: undefined
 }

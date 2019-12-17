@@ -21,10 +21,11 @@ export default function PrimaryNavigation() {
           marginBottom: '1em',
         }}
       />
-      <Grid columns='equal' >
-        <Grid.Row>
-          <Grid.Column>
-            <Link to='/'>
+
+      <Grid stackable columns={1} >
+        <Grid.Row centered columns={6}>
+          <Grid.Column centered >
+            <Link centered to='/'>
               <Button
                 primary
                 size='small'
@@ -34,8 +35,8 @@ export default function PrimaryNavigation() {
             </Button>
             </Link>
           </Grid.Column>
-          <Grid.Column >
-            <Link to='/'>
+          <Grid.Column centered>
+            <Link centered to='/'>
               <Button
                 primary
                 size='small'
@@ -44,18 +45,22 @@ export default function PrimaryNavigation() {
             </Link>
           </Grid.Column>
           <Grid.Column >
-            <Button
-              primary
-              size='small'
-            >Exchanges
+            <Link centered to='/exchanges'>
+              <Button
+                primary
+                size='small'
+              >Exchanges
             </Button>
+            </Link>
           </Grid.Column>
           <Grid.Column >
-            <Button
-              primary
-              size='small'
-            >FAQ
+            <Link centered to='/'>
+              <Button
+                primary
+                size='small'
+              >FAQ
             </Button>
+            </Link>
           </Grid.Column>
         </Grid.Row>
       </Grid>

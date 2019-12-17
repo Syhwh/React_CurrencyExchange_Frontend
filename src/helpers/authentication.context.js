@@ -28,7 +28,7 @@ export function AuthProvider({ children }) {
   }
   function authLogOutUser() {
     setUser(null);
-    history.push('/');
+    history.push('/login');
   }
   return (
     <AuthContext.Provider value={{
