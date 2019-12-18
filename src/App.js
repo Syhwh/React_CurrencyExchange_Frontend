@@ -4,7 +4,7 @@ import { AuthProvider } from './helpers/authentication.context';
 import NavigationComponent from './components/Navigation';
 
 import routes from './routes/routes';
-import 'semantic-ui-css/semantic.min.css'
+import 'semantic-ui-css/semantic.min.css';
 
 
 function App() {
