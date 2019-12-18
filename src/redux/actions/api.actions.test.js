@@ -25,8 +25,6 @@ describe('apiActions', () => {
 
   afterEach(() => moxios.uninstall());
 
-
-
   it('should request exchange rates rates', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
