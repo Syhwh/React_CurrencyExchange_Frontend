@@ -27,8 +27,8 @@ describe('Input render component', () => {
   test(' render the FormatNumber component with default value', () => {
     const wrapper = setup();
     const component = findByTestAttr(wrapper, 'Input-Currency-Component');
-    const formatComponent = component.dive().at(0)
-      .find('[test-data="Input-Number-Format"]').at(0)
+    const formatComponent = component.dive()
+      .find('[test-data="Input-Number-Format"]')
     expect(formatComponent.length).toBe(1);
     expect(formatComponent.props().value).toBe(0);
   });

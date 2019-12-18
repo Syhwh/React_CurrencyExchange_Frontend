@@ -31,7 +31,7 @@ export function loginUser(userData, callback) {
       .then(({ data }) => {
         dispatch({
           type: USER_LOGIN,
-          payload: data
+          payload: data.user
         });
         localStorage.setItem('token', data.token);
         callback(data.user._id);

@@ -39,8 +39,8 @@ export default function ExchangeCurrency({
           <Grid.Column centered width={3} >
             {user ?
               <Button
-                centered
                 test-data='Button-Conversion-Currency-Component'
+                centered
                 onClick={handleOnClick}
                 size='large'
                 animated='fade'>

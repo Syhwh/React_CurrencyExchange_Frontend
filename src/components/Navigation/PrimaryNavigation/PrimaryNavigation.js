@@ -1,12 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Button,
-  Container,
-  Grid,
-  Icon,
-  Image,
-} from 'semantic-ui-react';
+import { Button, Container, Grid, Icon, Image, } from 'semantic-ui-react';
 import logo from '../../../assets/images/logo.png';
 
 export default function PrimaryNavigation() {
@@ -21,7 +15,6 @@ export default function PrimaryNavigation() {
           marginBottom: '1em',
         }}
       />
-
       <Grid stackable columns={1} >
         <Grid.Row centered columns={6}>
           <Grid.Column centered >

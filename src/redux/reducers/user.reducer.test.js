@@ -4,7 +4,7 @@ import {
   USER_LOGOUT,
 } from '../actions/types.actions';
 
-import userReducer, { initialState } from './api.reducer';
+import userReducer, { initialState } from './user.reducer';
 
 const userData = {
   userEmail: 'user@mockemail.com',
@@ -20,7 +20,7 @@ const userLoginApiResponse =
   userPassword: '$2b$10$MbrLqWi',
 
 }
-describe('api Reducer', () => {
+describe('User Reducer Test', () => {
   test('should return defult state', () => {
     const userState = userReducer(undefined, {});
     expect(userState).toMatchObject(initialState);
@@ -39,9 +39,8 @@ describe('api Reducer', () => {
       payload: userLoginApiResponse
     });
     expect(newState.user).toEqual(userLoginApiResponse);
-
   });
-  test('should delete user Data - action type UPDATE_CURRENCY_RATES', () => {
+  test('should delete user Data - action type USER_LOGOUT', () => {
     const newState = userReducer(initialState, {
       type: USER_LOGOUT
     });
