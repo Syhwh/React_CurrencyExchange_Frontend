@@ -2,6 +2,13 @@
 import currencyExchangeApi from '../../utils/api.configuration';
 import { POST_CONVERT, GET_CURRENCY_RATES, UPDATE_CURRENCY_RATES, GET_USER_CONVERSIONS_HISTORY, ERROR } from './types.actions';
 
+/**
+ * Return node(s) with the given test-data attribute
+ * @param {ShallowWrapper} wrapper - Enzyme shallow wrapper
+ * @param {String} value - Value of test-data attribute for search
+ * @returns {ShallowWrapper}
+ */
+
 export function getCurrencyExchangeRate() {
   return function dispatcher(dispatch) {
     const token = localStorage.getItem('token')
