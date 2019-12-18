@@ -1,7 +1,7 @@
 import {
   POST_CONVERT,
   GET_CURRENCY_RATES,
-  GET_USER_CONVERSIONS_INFO,
+  GET_USER_CONVERSIONS_HISTORY,
   UPDATE_CURRENCY_RATES,
   ERROR
 } from '../actions/types.actions'
@@ -29,10 +29,10 @@ export default function apiReducer(state = initialState, action) {
         currencyExchangeRate: action.payload.info.rate,
         error: ''
       }
-    case GET_USER_CONVERSIONS_INFO:
+    case GET_USER_CONVERSIONS_HISTORY:
       return {
         ...state,
-        userCurrencyExchangeHistory: '',
+        userCurrencyExchangeHistory: action.payload,
         error: ''
       }
     case UPDATE_CURRENCY_RATES:

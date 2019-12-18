@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Dimmer, Loader } from 'semantic-ui-react'
+import { Dimmer, Loader } from 'semantic-ui-react';
 import { getCurrencyExchangeRate } from '../../redux/actions/api.actions';
 
 import CurrencyRatesCharts from './CurrencyRatesCharts';

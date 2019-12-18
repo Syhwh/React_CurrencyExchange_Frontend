@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import currencyExchangeApi from '../../utils/api.configuration';
-import { POST_CONVERT, GET_CURRENCY_RATES, UPDATE_CURRENCY_RATES, ERROR } from './types.actions';
+import { POST_CONVERT, GET_CURRENCY_RATES, UPDATE_CURRENCY_RATES, GET_USER_CONVERSIONS_HISTORY, ERROR } from './types.actions';
 
 export function getCurrencyExchangeRate() {
   return function dispatcher(dispatch) {
@@ -58,10 +58,37 @@ export function makeCurrencyExchange(conversionData) {
 }
 
 export function updateConversionRates(lastRate) {
-   return function dispatcher(dispatch) {
+  return function dispatcher(dispatch) {
     return dispatch({
       type: UPDATE_CURRENCY_RATES,
       payload: lastRate
     })
+  }
+}
+
+export function getUserCurrencyExchanges(id) {
+  return function dispatcher(dispatch) {
+    const token = localStorage.getItem('token');
+    return currencyExchangeApi
+      .get('/api/me', {
+        headers: {
+          authorization: `Bearer ${token}`
+        },
+        params: {
+          id
+        }
+      })
+      .then(({ data }) => {
+        dispatch({
+          type: GET_USER_CONVERSIONS_HISTORY,
+          payload: data.userExchangeData
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: ERROR,
+          payload: error.message
+        })
+      })
   }
 }
