@@ -21,13 +21,16 @@ export default function LoginForm({ props, responseError }) {
         <Header as='h2' color='blue' textAlign='center'>
           Log-in to your account
       </Header>
-        <Form size='large'>
+        <Form
+          test-data='Form-Login'
+          size='large'>
           <Segment stacked>
             {responseError &&
               <Message size='mini' negative>
                 <p>{responseError}</p>
               </Message>}
             <Form.Input
+              test-data='Input-Email'
               fluid icon='user'
               iconPosition='left'
               placeholder='E-mail address'
@@ -41,6 +44,7 @@ export default function LoginForm({ props, responseError }) {
                 <p>{errors.userEmail}</p>
               </Message>}
             <Form.Input
+              test-data='Input-Password'
               fluid
               icon='lock'
               iconPosition='left'

@@ -18,6 +18,7 @@ export default function OutputCurrency({ currency }) {
         prefix='$'
         className="some"
         inputMode="numeric"
+        name='outputCurrency'
         value={currency} />
     </Input>
   </>)

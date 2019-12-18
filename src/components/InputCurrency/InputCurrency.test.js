@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { findByTestAttr } from '../../testUtils/testUtils';
 import InputCurrency from './InputCurrency';
 
@@ -17,6 +17,13 @@ const setup = () => {
       handleOnchange={mockFunction}
       currency={0} />)
 }
+const setupMount = () => {
+  const mockFunction = jest.fn();
+  return mount(
+    <InputCurrency
+      handleOnchange={mockFunction}
+    />)
+}
 
 describe('Input render component', () => {
   test(' render without error', () => {
@@ -32,5 +39,13 @@ describe('Input render component', () => {
     expect(formatComponent.length).toBe(1);
     expect(formatComponent.props().value).toBe(0);
   });
-
+ 
+  test(' change the input value', () => {
+    const wrapper = setupMount();
+    const component = findByTestAttr(wrapper, 'Input-Currency-Component')
+    const input = component.find('[test-data="Input-Number-Format"]').at(1)
+    input.instance()
+    input.props().value = 1;
+    expect(input.props().value).toBe(1);
+  });
 })

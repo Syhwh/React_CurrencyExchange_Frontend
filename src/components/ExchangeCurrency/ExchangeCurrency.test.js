@@ -5,26 +5,27 @@ import ExchangeCurrency from './ExchangeCurrency';
 
 const setup = (initialState = {}, props = {}) => {
   const store = localMockStore(initialState);
-  const wrapper = shallow(<ExchangeCurrency store={store} props={props} />);
+  const componentProps = { ...props }
+  const wrapper = shallow(<ExchangeCurrency store={store} props={componentProps} />);
   return wrapper
 }
 
+
 setup()
-describe('Input render component', () => {
+describe('<ExchangeCurrency/ > render component', () => {
   const mockFunction = jest.fn();
   let wrapper;
   beforeEach(() => {
     const defaultProps = {
       handleOnchange: mockFunction,
       handleOnClick: mockFunction,
-
     }
     const initialState = {
       user: {
         user: true,
         userError: ''
       },
-      api: {
+      apiData: {
         currencyConversionRates: '',
         currencyExchange: '',
         currencyExchangeRate: '',
@@ -37,19 +38,20 @@ describe('Input render component', () => {
     const component = findByTestAttr(wrapper, 'Exchange-Currency-Component');
     expect(component.length).toBe(1);
   });
-  test(' render Input Currency without error', () => {
+  test('<InputCurrency/> render Input Currency without error', () => {
     const component = findByTestAttr(wrapper, 'Exchange-Currency-Component');
     const inputComponent = component.dive().find('[test-data="Input-Currency-Component"]')
     expect(inputComponent.length).toBe(1);
   });
-  test(' render Ouput currency without error', () => {
+  test('<ouputCurrency/> render Ouput currency without error', () => {
     const component = findByTestAttr(wrapper, 'Exchange-Currency-Component');
     const outputComponent = component.dive().find('[test-data="Output-Currency-Component"]')
     expect(outputComponent.length).toBe(1);
   });
-  test(' No render Button conversion ', () => {
+  test('<Buttton> No render Button conversion without loggin ', () => {
     const component = findByTestAttr(wrapper, 'Exchange-Currency-Component');
     const buttonComponent = component.dive().find('[test-data="Button-Conversion-Currency-Component"]')
     expect(buttonComponent.length).toBe(0);
   });
 })
+

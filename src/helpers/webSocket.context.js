@@ -12,7 +12,7 @@ let socket;
 function SocketManager({ children, updateRates }) {
   const [currencyRates, setCurrencyRates] = useState({});
   useEffect(() => {
-    socket = io.connect('localhost:3001');
+    socket = io.connect(process.env.REACT_APP_API_URL || 'http://localhost:3001/');
     socket.emit('subscribeToUpdateRates', 1000 * 60 * 2);
     socket.on('getRates', (newConversionRates) => {
       updateRates(newConversionRates);

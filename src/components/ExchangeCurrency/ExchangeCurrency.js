@@ -40,12 +40,13 @@ export default function ExchangeCurrency({
             {user ?
               <Button
                 test-data='Button-Conversion-Currency-Component'
+                type='submit'
                 centered
                 onClick={handleOnClick}
                 size='large'
                 animated='fade'>
                 <Button.Content visible>Make a conversion</Button.Content>
-                <Button.Content hidden>Rate:{currentRate} </Button.Content>
+                <Button.Content hidden>Rate:{currentRate   } </Button.Content>
               </Button> :
               <ModalMessage centered />}
           </Grid.Column>

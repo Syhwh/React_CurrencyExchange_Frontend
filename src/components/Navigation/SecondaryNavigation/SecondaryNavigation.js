@@ -8,12 +8,15 @@ export default function SecondaryNavigation({ handleItemClick, userAuthenticated
       <Menu.Menu position='right'>
         {!userAuthenticated ? <>
           <Menu.Item
+          data-test='Link-Signup'
             name='signup'
             onClick={handleItemClick}
           >
             Sign Up
           </Menu.Item>
           <Menu.Item
+          data-test='Link-Login'
+          className='Test-Login'
             name='login'
             onClick={handleItemClick}
           >
@@ -21,6 +24,7 @@ export default function SecondaryNavigation({ handleItemClick, userAuthenticated
           </Menu.Item>
         </> :
           <Menu.Item
+          data-test='Link-Logout'
             name='logout'
             onClick={handleItemClick}
           >
