@@ -15,7 +15,7 @@ export default function OutputCurrency({ currency }) {
       readOnly
         thousandSeparator
         decimalScale={4}
-        prefix='$'
+        prefix='€'
         className="some"
         inputMode="numeric"
         name='outputCurrency'

@@ -15,7 +15,7 @@ export default function PrimaryNavigation() {
           marginBottom: '1em',
         }}
       />
-      <Grid stackable columns={1} >
+      <Grid doubling columns={1} >
         <Grid.Row centered columns={6}>
           <Grid.Column centered >
             <Link centered to='/'>
